@@ -1,0 +1,107 @@
+{
+	"code": "saddle",
+	"variantgroups": [
+		{
+			"code": "color",
+			"states": [ "black", "blue", "brown", "gray", "green", "orange", "pink", "plain", "purple", "red", "white", "yellow" ]
+		}
+	],
+	"allowedVariants": [
+		"*"
+	],
+	"attributes": {
+		"attachableToEntity": {
+			"categoryCodeByType": {
+				"*": "ferussaddle"
+			},
+			"attachedShapeBySlotCodeByType": {
+				"*": {
+					"*": { "base": "item/wearable/ferussaddle" }
+				}
+			}
+		},
+		"isSaddleByType": {
+			"*": true
+		},
+		"interactPassthroughByType": {
+			"*": true
+		}
+	},
+	"shapeByType": {
+		"*": { "base": "item/wearable/ferussaddle-inventory" }
+	},
+	"texturesByType": {
+		"*": {
+			"saddlewood": { "base": "game:item/tool/shield/leather/{color}" },
+			"saddlemain": { "base": "game:item/tool/shield/leather/{color}" },
+			"saddlerope": { "base": "game:item/tool/shield/leather/{color}" },
+			}
+	},
+	"heldTpIdleAnimationByType": {
+		"*": "holdbothhands"
+	},
+	"behaviorsByType": {
+		"*": [
+			{
+				"name": "GroundStorable"
+			}
+		]
+	},
+	"maxStackSize": 1,
+	"creativeinventory": {
+		"general": [ "*" ],
+		"items": [ "*" ],
+		"equus": [ "*" ]
+	},
+	"renderAlphaTest": 0.25,
+	"guiTransformByType": {
+		"*western*": {
+			"translation": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": {
+				"x": 140,
+				"y": 41,
+				"z": 0
+			},
+			"origin": {
+				"x": 0.6,
+				"y": 0.4,
+				"z": 0.3
+			},
+			"scale": 1.6
+		},
+		"*": {
+			"translation": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": {
+				"x": 140,
+				"y": 41,
+				"z": 0
+			},
+			"origin": {
+				"x": 0.6,
+				"y": 0.4,
+				"z": 0.3
+			},
+			"scale": 1.6
+		}
+	},
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+		"scale": 5.47
+	},
+	"tpHandTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": -36, "y": 16, "z": -96 },
+		"origin": { "x": -0.6, "y": 0.8, "z": 0 },
+		"scale": 0.68
+	}
+}

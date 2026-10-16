@@ -1,0 +1,40 @@
+[
+  {
+    "enabled": true,
+    "side": "server",
+    "op": "addmerge",
+    "file": "equusferus:entities/ferus/ferus.json",
+    "path": "/server/behaviors/-",
+    "value": 
+      {
+        "code": "natfert.defecate",
+        "properties": {
+          "dungBase": "naturalfertilizer:dung",
+          "stages": 4,
+          "variants": [ "a", "b", "c", "d" ],
+          "minHours": 24,
+          "maxHours": 36
+        }
+      },
+    "dependsOn": [ { "modid": "naturalfertilizer" } ]
+  },
+  {
+    "enabled": true,
+    "side": "server",
+    "op": "addmerge",
+    "file": "equusferus:entities/ferus/ferus-unhandled.json",
+    "path": "/server/behaviors/-",
+    "value": 
+      {
+        "code": "natfert.defecate",
+        "properties": {
+          "dungBase": "naturalfertilizer:dung",
+          "stages": 4,
+          "variants": [ "a", "b", "c", "d" ],
+          "minHours": 24,
+          "maxHours": 36
+        }
+      },
+    "dependsOn": [ { "modid": "naturalfertilizer" } ]
+  }
+]

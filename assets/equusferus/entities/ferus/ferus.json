@@ -1,0 +1,1501 @@
+{
+	"code": "horse",
+	"class": "EntityAgent",
+	"tags": ["animal", "tamed", "habitat-land"],
+	"fallDamageMultiplierByType": { "*-baby-*" :0.5,"*-ferus" :0.5},
+	"variantgroups": [
+		{"code": "age","states": [ "baby","yearling","juvenile","adult"]},
+		{ "code": "gender","states": [ "female","male"]},
+		{ "code": "type","states": [ "ferus"]}
+	],
+	"hitBoxSizeByType": {
+		"*-adult-*-ferus": { "x": 1.05, "y": 1.9,"z": 3.0 },
+		"*-juvenile-*-ferus": { "x": 0.7, "y": 1.6 },
+		"*-yearling-*-ferus": { "x": 0.55, "y": 1.4 },
+		"*-baby-*-ferus": { "x": 0.4, "y": 1.1 }
+	},
+	"deadhitBoxSizeByType": {
+		"*-adult-*-ferus": { "x": 2.0, "y": 1.5 },"*-*-ferus": { "x": 0.99, "y": 0.8 }
+	},
+	"eyeHeightByType": {
+		"*-adult-*-ferus": 1.7,
+		"*-juvenile-*-ferus": 1.5,
+		"*-yearling-*-ferus": 1.3,
+		"*-baby-*-ferus": 1.1
+	},
+	"attributes": {
+		"tamedByType": { "*": false },
+		"killedByInfoText": "deadcreature-killed",
+		"trappableByType": {
+			"*-adult-*": {
+				"small": { "trapChance": 0.0,	"trapDestroyChance": 0.6 },
+				"large": { "trapChance": 0.0,	"trapDestroyChance": 0.15 }
+			},
+			"*-juvenile-*": {
+				"small": { "trapChance": 0.0,	"trapDestroyChance": 0.4 },
+				"large": { "trapChance": 0.2,	"trapDestroyChance": 0.1 }
+			},
+			"*-yearling-*": {
+				"small": { "trapChance": 0.0,	"trapDestroyChance": 0.3 },
+				"large": { "trapChance": 0.3,	"trapDestroyChance": 0 }
+			},
+			"*-baby-*": {
+				"small": { "trapChance": 0.0,	"trapDestroyChance": 0.2 },
+				"large": { "trapChance": 0.4,	"trapDestroyChance": 0 }
+			}
+		},
+		"minGenerationToAllowHealing": 0,
+		"creatureDiet": {
+			"foodCategories": ["Fruit","Grain","Vegetable"],
+			"foodTags": ["fruitmash","grass","nibblecrop"]
+		},
+		"handbook": {
+			"groupcode": "creaturegroup-horse-{type}"
+		}		
+	},
+	"behaviorConfigs": {
+		"controlledphysics": { 
+			"stepHeight": 3.1251,
+			"stepUpSpeed": 0.25
+		},
+		"floatupwhenstuck": { "onlyWhenDead": true },
+		"rideableaccessories": {
+			"enabledByType": {
+				"*adult*": true,
+				"*": false
+			},
+			"wearableSlots": [
+				{ "code": "head-new{type}", "forCategoryCodes": ["ferusbridle","tackbridle"], "attachmentPointCode": "HeadAP","stepParentTo": { "": { "elementName": "Head" } } }, 
+				{ "code": "middlebackunder-new{type}", "forCategoryCodes": ["blanket","tackblanket"], "attachmentPointCode": "BlanketAP", "stepParentTo": { "": { "elementName": "BlanketStorage" } } },
+				{ "code": "lowerbackside-new{type}", "forCategoryCodes": ["sidebags","destriersidebag"], "attachmentPointCode": "RearSideAP", "stepParentTo": { "Back": { "elementName": "RearSideSP" } },	"emptyInteractPassThrough": true },
+				{ "code": "neck-new{type}", "forCategoryCodes": ["lantern"], "attachmentPointCode": "LanternAP", "stepParentTo": { "": { "elementName": "LanternStorage" } } },
+				{ "code": "lowerback-new{type}", "forCategoryCodes": ["bedroll"], "attachmentPointCode": "RearAP", "stepParentTo": { "LowerArmL": { "elementName": "RearStorageSP" } }, "behindSlots": ["lowerbackside-ferus"],	"emptyInteractPassThrough": true  },
+				{ "code": "face-new{type}", "forCategoryCodes": ["face"], "attachmentPointCode": "FaceAP", "stepParentTo": { "": { "elementName": "FaceStorage" } } },
+				{ "code": "frontrightside", "forCategoryCodes": ["utilities", "pot", "weaponfalx", "weapon1m", "bowshort", "bowlong"], "attachmentPointCode": "RightFrontAP", "stepParentTo": { "RightFrontStorage": { "elementName": "RightFrontSP" } } },
+				{ "code": "frontleftside", "forCategoryCodes": ["utilities", "pot", "weaponfalx", "weapon1m", "bowshort", "bowlong"], "attachmentPointCode": "LeftFrontAP", "stepParentTo": { "LeftFrontStorage": { "elementName": "LeftFrontSP" } } },
+				{ "code": "Riding-new{type}", "forCategoryCodes": ["ferussaddle","tacksaddle"], "attachmentPointCode": "RidingAP", "stepParentTo": { "": { "elementName": "RidingStorage" } }, "behindSlots": ["lowerback-ferus","lowerbackside-ferus"] }
+		
+			]},
+		"selectionboxes": {
+			"selectionBoxes": [ "HeadAP", "BlanketAP", "RearSideAP", "LanternAP", "RearAP", "FaceAP", "RightFrontAP","LeftFrontAP", "RidingAP" ],
+			"enabledByType": {
+				"*adult*": true,
+				"*": false
+			}
+		},
+		"genelib.genetics": {
+			"genomeType": "equusferus:ferus",
+			"initializers": ["ferus"],
+			"extraInterpreters": [
+				{ "code": "EquusFerus" },
+				{
+					"code": "TextureOverlay", 
+					"id": "roan",
+					"material": "skin",
+					"textureVariants": [ { "base": "entity/ferus/overlays/ferus-overlay-roan" } ],
+					"conditions": [{"gene": "roan", "hasAllele": "roan"}]
+				},
+				{
+					"code": "TextureOverlay", 
+					"id": "leopard",
+					"material": "skin",
+					"textureVariants": [{ "base": "entity/ferus/overlays/ferus-overlay-leopard2" },{ "base": "entity/ferus/overlays/ferus-overlay-leopard3" }, { "base": "entity/ferus/overlays/ferus-overlay-leopard4" }, { "base": "entity/ferus/overlays/ferus-overlay-leopard-snowflake1" }],
+					"conditions": [{"gene": "leopard", "hasAllele": "leopard", "otherAllele": "wildtype"}]
+				},
+				{
+					"code": "TextureOverlay", 
+					"id": "snowcap",
+					"material": "skin",
+					"textureVariants": [ { "base": "entity/ferus/overlays/ferus-overlay-snowcap"}],
+					"conditions": [{"gene": "leopard", "homozygous": "leopard"}]
+				},
+				{
+					"code": "TextureOverlay", 
+					"id": "tobiano",
+					"material": "skin",
+					"textureVariants": [ { "base": "entity/ferus/overlays/ferus-overlay-tobiano1" }, { "base": "entity/ferus/overlays/ferus-overlay-tobiano2" }, { "base": "entity/ferus/overlays/ferus-overlay-tobiano3" }, { "base": "entity/ferus/overlays/ferus-overlay-tobiano4" } ],
+					"conditions": [{"gene": "tobiano", "hasAllele": "tobiano"}]
+				}
+				]},
+		"jaunt:gait": {
+			"idleGaits": {"Land": "idle", "Sea": "tread" },
+			"gaits": [
+				{
+					"code": "walkback",
+					"movespeedByType": {
+						"*-ferus": 0.010
+					},
+					"backwards": true,
+					"yawMultiplier":1,
+					"staminaCost": 0.0,
+					"iconTexture": "jaunt:hud/walkback.svg",
+					"mulWithWalkSpeed": true,
+					"animation": "walkback",
+					"weight": 10,
+					"animationSpeedByType": {
+						"*-ferus": 2.5
+					},
+					"easeInSpeed": 1,
+					"easeOutSpeed": 3,
+					"blendMode": "Average",
+					"animationSounds": [
+					{"frame": 0,  "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 }
+							}
+					}, 
+					{"frame": 10, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 }
+							}
+					}, 
+					{"frame": 40, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 }
+						}
+					},
+					{"frame": 50, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 }
+						}
+					}
+				]
+				},
+				{
+					"code": "idle",
+                    "movespeedByType": {
+						"*unhandled*-ferus": 0.026
+					},
+					"yawMultiplier":0.7,
+					"iconTexture": "jaunt:hud/idle.svg",
+					"weight": 1,
+                    "animation": "idle",
+					"animationSpeedByType": {
+						"*unhandled*-ferus": 0.00001,
+						"*-ferus": 1.125
+					},
+					"easeInSpeed": 1,
+					"easeOutSpeed": 3,
+					"blendMode": "Average"
+				},
+				{
+					"code": "walk",
+					"movespeedByType": {
+						"*-ferus": 0.010
+					},
+					"yawMultiplier":0.6,
+					"staminaCost": 0.0,
+					"natural": true,
+					"iconTexture": "jaunt:hud/walk.svg",
+					"mulWithWalkSpeed": true,
+					"animation": "Walk",
+					"weight": 10,
+					"animationSpeedByType": {
+						"*-ferus": 2.5
+					},
+					"blendMode": "Average",
+					"animationSounds": [
+					{"frame": 0, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 }
+							}
+					}, 
+					{"frame": 10, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 }
+							}
+					}, 
+					{"frame": 40, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 }
+						}
+					},
+					{"frame": 50, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 }
+						}
+					}
+				]
+				},
+				{
+					"code": "trot",
+					"movespeedByType": {
+						"*-ferus": 0.03
+					},
+					"yawMultiplier": 1.2,
+					"staminaCost": 0.0,
+					"fallbackGaitCode": "walk",
+					"iconTexture": "jaunt:hud/trot.svg",
+					"mulWithWalkSpeed": true,
+					"natural": true,
+					"animation": "Trot",
+					"weight": 10,
+					"animationSpeedByType": {
+						"*-ferus": 3.1
+					},
+					"blendMode": "Average",
+					"animationSounds": [
+					{"frame": 30, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.25 }
+							}
+					}, 
+					{"frame": 70, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.25 }
+							}
+					}
+				]
+				},
+				{
+					"code": "canter",
+					"movespeedByType": {
+						"*unhandled*-ferus": 0.02,
+						"*-ferus": 0.06
+					},
+					"yawMultiplier": 1.1,
+					"staminaCost": 0.001,
+					"fallbackGaitCode": "trot",
+					"natural": true,
+					"iconTexture": "jaunt:hud/canter.svg",
+					"mulWithWalkSpeed": true,
+					"animation": "canter",
+					"animationSpeedByType": {
+						"*unhandled*-ferus": 1.23,
+						"*-ferus": 3.8
+					},
+					"blendMode": "Average",
+					"animationSounds": [
+					{"frame": 20, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.35 }
+							}
+					}, 
+					{"frame": 30, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.35 }
+							}
+					}, 
+					{"frame": 70, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.35 }
+						}
+					}
+				]
+				},
+				{
+					"code": "gallop",
+					"movespeedByType": {
+						"*unhandled*-ferus": 0.026,
+						"*-ferus": 0.115
+					},
+					"yawMultiplier": 1.0,
+					"staminaCost": 0.15,
+					"fallbackGaitCode": "canter",
+					"iconTexture": "jaunt:hud/gallop.svg",
+					"mulWithWalkSpeed": true,
+					"natural": true,
+					"animation": "Gallop",
+					"easeOutSpeed": 4,
+					"weight": 10,
+					"animationSpeedByType": {
+						"*unhandled*-ferus": 1,
+						"*-ferus": 4.5
+					},
+					"blendMode": "Average",
+					"animationSounds": [
+					{"frame": 10, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.45 }
+							}
+					}, 
+					{"frame": 20, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.45 }
+							}
+					}, 
+					{"frame": 34, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.45 }
+						}
+					},
+					{"frame": 50, "range": 100, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.45 }
+						}
+					}
+				]
+				},
+				{
+					"code": "jump",
+					"movespeedByType": {
+						"*-ferus": 0.013
+					},
+					"yawMultiplier": 1,
+					"staminaCost": 0.0,
+					"animation": "Jump",
+					"weight": 100,
+					"blendMode": "Average",
+					"animationSpeed": 1.4,
+					"easeOutSpeed": 40,
+					"easeInSpeed": 40
+				},
+				{
+					"code": "swim",
+					"environment": "sea",
+					"movespeedByType": {
+						"*-ferus": 0.02
+					},
+					"yawMultiplier": 1,
+					"staminaCost": 0.1,
+					"animation": "Swim",
+					"animationSpeed": 1,
+					"weight": 10,
+					"blendMode": "Average"
+				},
+				{
+					"code": "swimback",
+					"environment": "sea",
+					"movespeedByType": {
+						"*-ferus": 0.01
+					},
+					"yawMultiplier": 1,
+					"staminaCost": 0.1,
+					"backwards": true,
+					"animation": "Swim",
+					"animationSpeed": -0.5,
+					"weight": 10,
+					"blendMode": "Average"
+				},
+				{
+					"code": "tread",
+					"environment": "sea",
+					"yawMultiplier": 1,
+					"staminaCost": 0.0,
+					"animation": "Swimidle",
+					"animationSpeed": 1,
+					"weight": 10,
+					"blendMode": "Average"
+				}
+			]
+		},
+		"jaunt:rideable": {
+			"enabledByType": {
+				"*adult*": true,
+				"*": false
+			},
+			"interactMountAnySeat": false,
+			"seats": [
+				{ "apName": "Rider", "selectionBox": "RidingAP", "bodyYawLimit": 0.2, "controllable": true,
+					"mountOffsetByType":{
+					"*-female-*": { "x":0,"y":-0.5,"z":0},
+					"*-male-*": { "x":0,"y":-0.47,"z":0}
+					
+					}}
+			],			
+			"rideableGaitOrder": {
+				"Land":["walkback", "idle", "walk", "trot", "canter", "gallop"],
+				"Sea": ["swimback","tread", "swim"]
+			},
+			"controls": {
+				"walkback": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"idle": {
+					"riderAnim": {
+						"animation": "rideelk-idle",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"walk": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"trot": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"canter": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average",
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"gallop": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 2,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"swimback": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"swim": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"tread": {
+					"riderAnim": {
+						"animation": "rideelk-walk",
+						"animationSpeed": 1,
+						"weight": 1,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 80,
+							"UpperTorso": 80,
+							"UpperFootR": 80,
+							"UpperFootL": 80,
+							"LowerFootR": 80,
+							"LowerFootL": 80
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				},
+				"jump": {
+					"riderAnim": {
+						"animation": "rideelk-jump",
+						"animationSpeed": 1,
+						"weight": 10,
+						"withFpVariant": true,
+						"blendMode": "Average", 
+						"elementWeight": {
+							"LowerTorso": 160,
+							"UpperTorso": 160,
+							"UpperFootR": 160,
+							"UpperFootL": 160,
+							"LowerFootR": 160,
+							"LowerFootL": 160
+						},
+						"elementBlendMode": {
+							"LowerTorso": "Average",
+							"UpperTorso": "Average",
+							"UpperFootR": "Average",
+							"UpperFootL": "Average",
+							"LowerFootR": "Average",
+							"LowerFootL": "Average"
+						}
+					}
+				}
+			}
+		},
+		"jaunt:stamina": {
+			"maxStamina": 100,
+			"sprintFatigue": 0.2,
+			"swimFatigue": 0.1,
+			"baseFatigueRate": 1,
+			"exhaustionThreshold": 0.5,
+			"staminaRegenRate": 1.0,
+			"regenPenaltyWounded": 0.5,
+			"regenPenaltyMounted": 0.5
+		},
+		"health": {
+			"currenthealthByType": {
+					"*-adult-female-ferus": 42,"*-adult-male-ferus": 44,"*-juvenile-*-ferus": 30,"*-yearling-*-ferus": 15,"*-baby-*-ferus": 10
+			},
+			"maxhealthByType": {
+					"*-adult-female-ferus": 42,"*-adult-male-ferus": 44,"*-juvenile-*-ferus": 30,"*-yearling-*-ferus": 15,"*-baby-*-ferus": 10
+			}
+		},
+		"ownable": {
+			"groupCode": "ferus"
+		},
+		"deaddecay": {
+			"hoursToDecay": 96,
+			"decayedBlockByType": {
+				"*-adult-*": "carcass-large",
+				"*-juvenile-*": "carcass-large",
+				"*-yearling-*": "carcass-medium",
+				"*-baby-*": "carcass-medium"
+			}
+		},
+		"harvestable": {
+			"quantitySlots": 8,
+			"drops": [
+				{
+					"type": "item",
+					"code": "game:redmeat-raw",
+					"quantityByType": {
+						"*-adult-female-ferus": {
+							"avg": 19,
+							"var": 1.5
+						},
+						"*-adult-male-ferus": {
+							"avg": 22,
+							"var": 1.5
+						},
+						"*-juvenile-*-ferus": {
+							"avg": 18,
+							"var": 1.5
+						},
+						"*-yearling-*-ferus": {
+							"avg": 14,
+							"var": 1.5
+						},
+						"*-baby-*-ferus": {
+							"avg": 10,
+							"var": 1.5
+						}
+
+					}
+				},
+				{
+					"type": "item",
+					"code": "game:fat",
+					"quantityByType": {
+						"*-adult-female-ferus": {
+							"avg": 2,
+							"var": 1
+						},
+						"*-adult-male-ferus": {
+							"avg": 3,
+							"var": 1
+						},
+						"*-juvenile-*-ferus": {
+							"avg": 2,
+							"var": 0.5
+						},
+						"*-yearling-*-ferus": {
+							"avg": 1,
+							"var": 0.5
+						},
+						"*-baby-*-ferus": {
+							"avg": 1,
+							"var": 0.5
+						}
+					}
+				},
+				{
+					"type": "item",
+					"code": "game:hide-raw-large",
+					"quantityByType": {
+						"*-adult-*": {
+							"avg": 1.0,
+							"var": 0.0
+						},
+						"*": {
+							"avg": 0.0,
+							"var": 0.0
+						}
+					}
+				},
+				{
+					"type": "item",
+					"code": "game:hide-raw-medium",
+					"quantityByType": {
+						"*-baby-*": {
+							"avg": 1.0,
+							"var": 0.0
+						},
+						"*": {
+							"avg": 0.0,
+							"var": 0.0
+						}
+					}
+				}
+			]
+		},
+		"emotionstates": {
+				"states": [
+					{ "code": "fleeondamage","duration": 60,
+						"chanceByType": {
+							"*": 1
+						},
+						"slot": 2,"priority": 4,"accumType": "max","whenHealthRelBelow": 0.3},
+					{ "code": "aggressiveondamage","duration": 60,
+						"chanceByType": {
+							"*-adult-*": 0.1,
+							"*": 0.0
+						},
+						"slot": 2,"priority": 3,"accumType": "noaccum"},
+					{ "code": "fleeondamage","duration": 60,"slot": 2,"chanceByType": { "*-adult-*": 0.7,"*": 1},"priority": 1,"accumType": "max","whenHealthRelBelow": 0.5},
+					{ "code": "fleeondamage","duration": 30,"slot": 2,"chanceByType": { "*-adult-*": 0.5,"*": 1},"priority": 0.5,"accumType": "max","whenHealthRelBelow": 1, "maxGeneration": 2},
+					{ "code": "alarmherdondamage","chance": 1,"slot": 1,"priority": 1.5,"accumType": "max"},
+					{ "code": "saturated","duration": 1200,"chance": 1,"slot": 0,"priority": 1,"accumType": "sum"}
+				]
+			},
+		"taskai": {
+				"aiCreatureType": "LandCreature",
+				"aitasks": [
+					{
+						"code": "cometoowner",
+						"priority": 4,
+						"animation": "trot",
+						"animationSpeed": 2.7,
+						"movespeed": 0.035,
+						"teleportMaxRange": 1000,
+						"teleportAfterRange": 200,
+						"teleportToRange": 20
+					},
+					{
+						"code": "followleadholder",
+						"enabledByType": {
+							"*": true
+						},
+						"priority": 1.45,
+						"animation": "trot",
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.03,
+							"*-juvenile-*-ferus": 0.027,
+							"*-yearling-*-ferus": 0.025,
+							"*-baby-*-ferus": 0.02
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 3.3,
+							"*-yearling-*": 3.2,
+							"*": 3.1
+						}
+					},
+					{
+						"code": "meleeattack",
+						"animation": "Attack",
+						"enabledByType": {
+							"*-baby-*": false,
+							"*": true},
+						"entityCodesByType": {
+							"*-adult-*": ["player","bell-*","bowtorn-*","drifter-*","hyena-*","locust-*","shiver-*","bear-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"]},
+						"priority": 3,
+						"slot": 1,
+						"damageByType": {
+							"*-adult-*-ferus":7
+						},
+						"knockbackStrengthByType": { "*":2},
+						"damageTierByType": { "*":3},
+						"mincooldown": 500,
+						"maxcooldown": 1000,
+						"attackDurationMs": 500,
+						"damagePlayerAtMs": 250,
+						"animationSpeed": 1,
+						"whenInEmotionState": "aggressiveondamage"
+					},
+					{
+						"code": "fleeentity",
+						"whenInEmotionState": "fleeondamage",
+						"entityCodes": [ "player","bear-*","bell-*","bowtorn-*","drifter-*","hyena-*","locust-*","moose-*","shiver-*","bear-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"],
+						"priority": 1.8,
+						"movespeed": 0.115,
+						"seekingRange": 12,
+						"animation": "Gallop",
+						"animationSpeed": 4.1
+					},
+					{
+						"code": "getoutofwater",
+						"animation": "Swim",
+						"priority": 1.4,
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.015,
+							"*-juvenile-*-ferus": 0.013,
+							"*-yearling-*-ferus": 0.012,
+							"*-baby-*-ferus": 0.010
+						},
+						"animationSpeed": 1.0
+					},
+					{
+						"code": "stayclosetoentity",
+						"animation": "canter",
+						"enabledByType": {
+							"*-baby-*": true,
+                            "*": false
+						},
+						"priority": 2.95,
+						"entityCodeByType": {
+							"*-baby-*": "horse-adult-female-{type}"
+						},
+						"movespeedByType": {
+							"*-baby-*-ferus": 0.03
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 4.2
+						},
+						"maxDistanceByType": { "*-baby-*": 5},
+						"searchRange": 10,
+						"minduration": 500,
+						"maxduration": 5000,
+						"mincooldown": 1000,
+						"maxcooldown": 3000
+					},
+					{
+						"code": "stayclosetoentity",
+						"animation": "canter",
+						"enabledByType": {
+							"*-baby-*": true,
+                            "*": false
+						},
+						"priority": 1.80,
+						"entityCodeByType": {
+							"*-baby-*": "player"},
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.0585,
+							"*-juvenile-*-ferus": 0.046,
+							"*-yearling-*-ferus": 0.034,
+							"*-baby-*-ferus": 0.02
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 3.8,
+							"*": 2.2
+						},
+						"maxDistanceByType": { "*-baby-*": 6},
+						"searchRange": 15,
+						"seekRange": 15,
+						"stopRange": 4,
+						"minduration": 500,
+						"maxduration": 1500,
+						"mincooldown": 60000,
+						"maxcooldown": 3000000,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "nap",
+						"priority": 1.2,
+						"minduration": 20000,
+						"maxduration": 240000,
+						"mincooldown": 6000,
+						"maxcooldown": 12000,
+						"priorityForCancel": 1.28,
+						"chanceByType": { "*-adult-*":0.02,"*":0.2},
+						"stopOnNearbyEntityCodes": [ "player", "bear-*","hyena-male", "hyena-female","bear-male", "bear-female"  ],
+						"stopRange": 20,
+						"stopOnHurt": true,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "Idle",
+						"priority": 1.2,
+						"minduration": 2000,
+						"maxduration": 24000,
+						"mincooldown": 6000,
+						"maxcooldown": 12000,
+						"priorityForCancel": 1.28,
+						"stopOnNearbyEntityCodes": [ "player", "bear-*","hyena-male", "hyena-female","bear-male", "bear-female"  ],
+						"stopRange": 20,
+						"stopOnHurt": true,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "nap",
+						"priority": 1.6,
+						"minduration": 20000,
+						"maxduration": 80000,
+						"mincooldown": 20000,
+						"maxcooldown": 40000,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage",
+						"duringDayTimeFramesByType": {
+							"*":[{ "fromHour": 20,"toHour": 22},{ "fromHour": 5,"toHour": 6}]},
+						"stopOnNearbyEntityCodes": [ "player" ],
+						"stopRange": 2,
+						"stopOnHurt": true
+					},
+					{
+						"code": "idle",
+						"animation": "Sleep",
+						"priority": 1.6,
+						"minduration": 20000,
+						"maxduration": 80000,
+						"mincooldown": 20000,
+						"maxcooldown": 40000,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage",
+						"duringDayTimeFramesByType": {
+							"*":[{ "fromHour": 22,"toHour": 24},{ "fromHour": 0,"toHour": 5}]},
+						"stopOnNearbyEntityCodes": [ "player" ],
+						"stopRange": 10,
+						"stopOnHurt": true
+					},
+					{
+						"code": "seekfoodandeat",
+						"animation": "Walk",
+						"eatAnimation": "Eat",
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.008,
+							"*-juvenile-*-ferus": 0.008,
+							"*-yearling-*-ferus": 0.008,
+							"*-baby-*-ferus": 0.008
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 2.1,
+							"*-yearling-*": 2.0,
+							"*-juvenile-*": 1.9,
+							"*": 1.9
+						},
+						"priority": 1.34,
+						"eatSoundByType": {
+							"*":"game:creature/animal-eat*"},
+						"eatTime": 1.5,
+						"eatLooseItems": true,
+						"mincooldownHours": 1,
+						"maxcooldownHours": 4,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "Eat",
+						"priority": 1.2,
+						"priorityForCancel": 1.35,
+						"minduration": 3000,
+						"maxduration": 24000,
+						"mincooldown": 9000,
+						"maxcooldown": 20000,
+						"animationSpeed": 1,
+						"soundByType": { "*":"game:creature/animal-eat*"},
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "look",
+						"priority": 1.2,
+						"priorityForCancel": 1.35,
+						"minduration": 3000,
+						"maxduration": 3000,
+						"mincooldown": 9000,
+						"maxcooldown": 20000,
+						"animationSpeed": 1,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "wander",
+						"animation": "Walk",
+						"priority": 1.0,
+						"priorityForCancel": 1.35,
+						"wanderChanceByType": { "*adult*":0.1,"*":0.5},
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.008,
+							"*-juvenile-*-ferus": 0.0073,
+							"*-yearling-*-ferus": 0.0067,
+							"*-baby-*-ferus": 0.006
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 2.1,
+							"*-juvenile-*": 2.0,
+							"*-yearling-*": 1.9,
+							"*": 1.9
+						},
+						"wanderRangeMaxByType": { "*-adult-male-*":50,"*-adult-female-*":50,"*-baby-*":20},
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					}
+				]
+			},
+			"genelib.multiply": {
+            "enabledByType": { "*-adult-female-*" : true, "*": false },
+			"spawnEntityCodes": [ { "code":"equusferus:horse-baby-female-{type}"}, { "code": "equusferus:horse-baby-male-{type}"} ],
+			"requiresNearbyEntityCodes":  [ "equusferus:horse-adult-male-{type}","equusferus:unhandledhorse-adult-male-{type}"],
+			"requiresNearbyEntityRange": 4,
+			"spawnQuantityMin": 1,
+			"spawnQuantityMax": 1.005,
+			"pregnancyDays": 85,
+			"multiplyCooldownDaysMin": 9,
+			"multiplyCooldownDaysMax": 11,
+			"portionsEatenForMultiply": 10,
+            "eatAnyway": true
+		},
+		"jaunt:revivableByType":{
+            "*adult*":{
+			"reviveType": "item", 
+			"reviveStack": { "type":"item", "code": "game:gear-temporal" },
+			"reviveHealth": 0.5
+		},
+		"*":{
+			"reviveHealth": 0.2
+		}
+		},
+		"jaunt:aicontrol":{
+			"hitchingEntityCode": "hitchingpost",
+			"canWanderIndoors": false
+		}
+	},
+	"drops": [],
+	"client": {
+		"renderer": "Shape",
+		"shapeByType": {
+		"*-ferus": {"base": "entity/ferus/horse{age}"}
+		},
+		"texturesByType": {
+			"*-ferus": {
+				"skin": { "base": "entity/ferus/ferus-bay", "overlays": [ ], "alternates": [
+					{ "base": "entity/ferus/ferus-black"},
+					{ "base": "entity/ferus/ferus-chestnut"},
+
+					{ "base": "entity/ferus/ferus-bay-mealy"},
+					{ "base": "entity/ferus/ferus-black"},
+					{ "base": "entity/ferus/ferus-chestnut-mealy"},
+
+					{ "base": "entity/ferus/ferus-bay-dun"},
+					{ "base": "entity/ferus/ferus-black-dun"},
+					{ "base": "entity/ferus/ferus-chestnut-dun"},
+
+					{ "base": "entity/ferus/ferus-bay-dun-mealy"},
+					{ "base": "entity/ferus/ferus-black-dun"},
+					{ "base": "entity/ferus/ferus-chestnut-dun-mealy"},
+
+					{ "base": "entity/ferus/ferus-bay-cream"},
+					{ "base": "entity/ferus/ferus-black"},
+					{ "base": "entity/ferus/ferus-chestnut-cream"},
+
+					{ "base": "entity/ferus/ferus-bay-cream-mealy"},
+					{ "base": "entity/ferus/ferus-black"},
+					{ "base": "entity/ferus/ferus-chestnut-cream-mealy"},	
+					
+					{ "base": "entity/ferus/ferus-bay-dun-cream"},
+					{ "base": "entity/ferus/ferus-black-dun"},
+					{ "base": "entity/ferus/ferus-chestnut-dun-cream"},
+					
+					{ "base": "entity/ferus/ferus-bay-dun-cream-mealy"},
+					{ "base": "entity/ferus/ferus-black-dun"},
+					{ "base": "entity/ferus/ferus-chestnut-dun-cream"},	
+
+					{ "base": "entity/ferus/ferus-doublecream"},
+					{ "base": "entity/ferus/ferus-darkbay"}
+
+				]}
+			}
+		},
+		"PitchStep": false,
+		"sizeByType": {
+			"*-adult-female-ferus": 0.98,
+			"*-adult-male-ferus": 1.02,
+			"*-juvenile-*-ferus": 1,
+			"*-yearling-*-ferus": 1,
+			"*-baby-*-ferus": 1
+		},
+		"sizeGrowthFactorByType": { "*-baby-*-ferus": 0.3, "*": 0 },
+		"behaviors": [
+			{ "code": "jaunt:walkspeed"},
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics"},
+			{ "code": "floatupwhenstuck","onlyWhenDead": true},
+			{ "code": "genelib.genetics"},
+			{ "code": "interpolateposition" },
+			{ "code": "mortallywoundable", "WhenBelowHealth": 6, "enabledByType": {"*": true}  },
+			{ "code": "harvestable"},
+			{ "code": "genelib.multiply"},
+			{ "code": "milkable", "enabledByType": { "*-adult-female-*" : true, "*": false }},
+			{ "code": "ownable"},
+			{ "code": "rideableaccessories"},
+			{ "code": "ropetieable" },
+			{ "code": "jaunt:rideable"},
+			{ "code": "selectionboxes"},
+			{ "code": "jaunt:gait" },
+			{ "code": "jaunt:stamina" },
+			{ "code": "genelib.info", "showtagonlywhentargeted": true },
+			{ "code": "jaunt:revivable"},
+			{ "code": "jaunt:armor"},
+			{ "code": "health"},
+			{ "code": "jaunt:aicontrol"}
+		],
+		"animations": [
+			{ "code": "attack","animation": "Attack","animationSpeed": 1.2,"weight": 0.1,"blendMode": "AddAverage", "elementWeight": {"Muzzlebot": 80, "Head": 80, "Neck3": 80, "Neck2": 80, "Mane4": 80, "Eyelid1": 80, "LEar": 80, "REar": 80}, "elementBlendMode": {"Head": "AddAverage","Neck3": "AddAverage", "Neck2": "AddAverage", "LEar": "AddAverage", "REar": "AddAverage", "Muzzlebot": "AddAverage", "Mane4": "AddAverage", "Eyelid1": "AddAverage"}},
+			{ "code": "dead","animation": "dead","weight": 10,"blendMode": "Average"},
+			{ "code": "die","animation": "Die","animationSpeed": 0.75,"weight": 10,"blendMode": "Average","triggeredBy": { "onControls": [ "dead" ] }},
+			{ "code": "eat","animation": "Eat","easeOutSpeed": 10,"blendMode": "Average"},
+			{ "code": "look","animation": "Look","easeOutSpeed": 10,"blendMode": "Average"},
+			{ 
+				"code": "walkback",
+				"animation": "walkback",
+				"weight": 10, 
+				"easeInSpeed": 4,
+				"easeOutSpeed": 4,
+				"supressDefaultAnimation": true,
+				"mulWithWalkSpeed": true,
+				"blendMode": "Average",
+				"animationSounds": [
+					{"frame": 0, "rangeByType": {"*adult*": 30,"*": 10 },  "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 },
+							"*": { "avg": 0.05 }
+							}
+					}, 
+					{"frame": 10, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 },
+							"*": { "avg": 0.05 }
+							}
+					}, 
+					{"frame": 40, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 },
+							"*": { "avg": 0.05 }
+						}
+					},
+					{"frame": 50, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.1 },
+							"*": { "avg": 0.05 }
+						}
+					}
+				]
+			},
+			{ 
+				"code": "walk",
+				"animation": "Walk",
+				"weight": 10, 
+				"easeInSpeed": 4,
+				"easeOutSpeed": 4,
+				"supressDefaultAnimation": true,
+				"mulWithWalkSpeed": true,
+				"blendMode": "Average",
+				"animationSounds": [
+					{"frame": 0, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 },
+							"*": { "avg": 0.05 }
+							}
+					}, 
+					{"frame": 10, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 },
+							"*": { "avg": 0.05 }
+							}
+					}, 
+					{"frame": 40, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 },
+							"*": { "avg": 0.05 }
+						}
+					},
+					{"frame": 50, "rangeByType": {"*adult*": 30,"*": 10 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.15 },
+							"*": { "avg": 0.05 }
+						}
+					}
+				]
+			},
+			{ 
+				"code": "trot",
+				"animation": "Trot", 
+				"weight": 10, 
+				"easeInSpeed": 4,
+				"easeOutSpeed": 4,
+				"supressDefaultAnimation": true,
+				"mulWithWalkSpeed": true,
+				"blendMode": "Average",
+				"animationSounds": [
+					{"frame": 30, "rangeByType": {"*adult*": 40,"*": 20 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.2 },
+							"*": { "avg": 0.07 }
+							}
+					}, 
+					{"frame": 70, "rangeByType": {"*adult*": 40,"*": 20 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.2 },
+							"*": { "avg": 0.07 }
+							}
+					}
+				]
+			},
+			{ 
+				"code": "canter",
+				"animation": "canter", 
+				"weight": 100, 
+				"supressDefaultAnimation": true,
+				"mulWithWalkSpeed": true,
+				"blendMode": "Average",
+				"animationSounds": [
+					{"frame": 20, "rangeByType": {"*adult*": 80,"*": 30 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.3 },
+							"*": { "avg": 0.15 }
+							}
+					}, 
+					{"frame": 30, "rangeByType": {"*adult*": 80,"*": 30 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.3 },
+							"*": { "avg": 0.15 }
+							}
+					}, 
+					{"frame": 70, "rangeByType": {"*adult*": 80,"*": 30 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.3 },
+							"*": { "avg": 0.15 }
+						}
+					}
+				]
+			},
+			{
+				"code": "gallop",
+				"animation": "Gallop",
+				"easeInSpeed": 4,
+				"easeOutSpeed": 4,
+				"supressDefaultAnimation": true,
+				"mulWithWalkSpeed": true,
+				"blendMode": "Average",
+				"animationSounds": [
+					{"frame": 10, "rangeByType": {"*adult*": 100,"*": 50 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.4 },
+							"*": { "avg": 0.2 }
+							}
+					}, 
+					{"frame": 20, "rangeByType": {"*adult*": 100,"*": 50 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+							},
+						"volumeByType": {
+							"*adult*": { "avg": 0.4 },
+							"*": { "avg": 0.2 }
+							}
+					}, 
+					{"frame": 34, "rangeByType": {"*adult*": 100,"*": 50 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.4 },
+							"*": { "avg": 0.2 }
+						}
+					},
+					{"frame": 50, "rangeByType": {"*adult*": 100,"*": 50 }, "location": "equusferus:horse-footstep-*",
+						"pitchByType": {
+							"*adult*": { "avg": 0.8, "var": 0.15 }
+						},
+						"volumeByType": {
+							"*adult*": { "avg": 0.4 },
+							"*": { "avg": 0.2 }
+						}
+					}
+				]
+			},
+
+			{ "code": "hurt","animation": "Hurt","animationSpeed": 1,"weight": 0.1,"blendMode": "AddAverage", "elementWeight": {"BodyOrigin": 80, "Head": 80, "Neck3": 80, "Neck2": 80, "Hind": 80, "Hind1": 80, "LEar": 80, "REar": 80, "Chest": 80, "withers2": 80}, "elementBlendMode": { "BodyOrigin": "AddAverage","Head": "AddAverage","Neck3": "AddAverage", "Neck2": "AddAverage", "LEar": "AddAverage", "REar": "AddAverage", "Chest": "AddAverage", "withers2": "AddAverage", "Hind": "AddAverage", "Hind1": "AddAverage"}},
+			{ "code": "idle","animation": "Idle","animationSpeed": 1,"blendMode": "AddAverage","easeOutSpeed": 4,"triggeredBy": { "defaultAnim": true }},
+			{ "code": "jump", "animation": "Jump", "animationSpeed": 1.4, "weight": 100, "blendMode": "AddAverage", "easeOutSpeed": 40 },
+			{ "code": "nap","animation": "nap","easeInSpeed": 4,"easeOutSpeed": 4,"blendMode": "Average"},
+			{ "code": "sleep","animation": "Sleep","easeInSpeed": 4,"easeOutSpeed": 4,"weight": 5,"blendMode": "Average"},
+			{ "code": "swim","animation": "Swim","easeInSpeed": 4,"easeOutSpeed": 4,"supressDefaultAnimation": true,"blendMode": "Average"},
+			{ "code": "tread","animation": "tread","easeInSpeed": 4,"easeOutSpeed": 4,"supressDefaultAnimation": true,"blendMode": "Average"},
+			{ "code": "turn-left", "animation": "turn-left", "easeInSpeed": 3, "easeOutSpeed": 10, "weight": 0.01, "blendMode": "Average", "elementWeight": {"BodyOrigin": 80, "Head": 80, "Neck3": 80, "Neck4": 80, "LEar": 2, "reinsOrigin": 80}, "elementBlendMode": { "BodyOrigin": "AddAverage","Head": "AddAverage","Neck3": "AddAverage", "Neck4": "AddAverage", "LEar": "AddAverage", "reinsOrigin": "AddAverage"}},
+			{ "code": "turn-right", "animation": "turn-right", "easeInSpeed": 3, "easeOutSpeed": 10, "weight": 0.01, "blendMode": "Average", "elementWeight": { "BodyOrigin": 80,"Head": 80,"Neck3": 80, "Neck4": 80, "REar": 2, "reinsOrigin": 80}, "elementBlendMode": { "BodyOrigin": "AddAverage","Head": "AddAverage","Neck3": "AddAverage", "Neck4": "AddAverage", "REar":"AddAverage", "reinsOrigin": "AddAverage"}},
+			{ "code": "wounded-idle", "animation": "wounded-idle", "easeInSpeed": 3, "weight": 10, "blendMode":"Average" }
+		]
+	},
+	"server": {
+		"attributes": {
+			"pathfinder": {
+				"minTurnAnglePerSec": 350,
+				"maxTurnAnglePerSec": 650
+			}
+		},
+		"behaviors": [
+			{ "code": "jaunt:walkspeed"},
+			{ "code": "ownable"},
+			{ "code": "repulseagents" },
+			{ "code": "genelib.genetics"},
+			{ "code": "controlledphysics"},
+			{ "code": "taskai"},
+			{ "code":"emotionstates"},
+			{ "code": "mortallywoundable", "WhenBelowHealth": 6, "enabledByType": {"*": true} },
+			{ "code": "deaddecay"},
+			{ "code": "floatupwhenstuck","onlyWhenDead": true},
+			{ "code": "harvestable"	},
+			{ "code": "genelib.multiply" },
+			{
+				"code": "milkable",
+				"enabledByType": {
+					"*-adult-female-*": true,
+					"*": false
+				}
+			},
+			{ "code": "grow",
+					"enabledByType": {
+					"*adult*": false,
+					"*": true
+				},
+				"hoursToGrowByType": {	
+					"*-juvenile-*": 400,
+					"*-yearling-*": 400,
+					"*-baby-*": 400
+				},
+				"adultEntityCodesByType": {
+					"*-baby-female-*": ["equusferus:horse-yearling-female-{type}"],
+					"*-baby-male-*": ["equusferus:horse-yearling-male-{type}"],
+					"*-yearling-female-*": ["equusferus:horse-juvenile-female-{type}"],
+					"*-yearling-male-*": ["equusferus:horse-juvenile-male-{type}"],
+					"*-juvenile-female-*": ["equusferus:unhandledhorse-adult-female-{type}"],
+					"*-juvenile-male-*": ["equusferus:unhandledhorse-adult-male-{type}"]
+				}
+			},
+			{ "code": "pettable", "minGeneration": 0},
+			{ "code": "selectionboxes", "minGeneration": 0 },
+			{ "code": "rideableaccessories", "minGeneration": 0 },
+			{ "code": "ropetieable" },
+			{ "code": "jaunt:gait"},
+			{ "code": "jaunt:rideable" },
+			{ "code": "jaunt:stamina" },
+			{ "code": "genelib.info", "showtagonlywhentargeted": true },
+			{ "code": "entitystatetags" },
+			{ "code": "jaunt:revivable"},
+			{ "code": "jaunt:armor"},
+			{ "code": "health"},
+			{ "code": "jaunt:aicontrol"}
+		]
+	},
+	"sounds": {
+		"swim": "game:player/swim"
+	}
+}

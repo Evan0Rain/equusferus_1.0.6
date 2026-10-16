@@ -1,0 +1,15 @@
+{
+    "type": "Code",
+    "modid": "equusferus",
+    "name": "Equus: Wild Horses 2.0",
+    "authors": [
+        "Shintharo12", "Freakyuser396"
+    ],
+    "description": "Adds tameable wild horses to the game with coat genetics, successor to the original Equus mod",
+    "version": "1.0.6",
+    "dependencies": {
+        "game": "1.22.0",
+        "genelib": "3.1.2",
+        "jaunt": "3.1.0"
+    }
+}

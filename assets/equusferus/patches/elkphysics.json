@@ -1,0 +1,12 @@
+[
+    {
+        "file": "equusferus:entities/ferus/ferus.json",
+        "op": "replace",
+        "path": "/client/behaviors/2",
+        "value": { "code": "elkphysics" },
+        "dependsOn": [
+            { "modid": "elkphysics" }
+        ],
+        "side": "Server"
+    }
+]

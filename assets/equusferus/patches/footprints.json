@@ -1,0 +1,68 @@
+﻿[
+    {
+        "dependsOn": [ { "modid": "footprints" } ],
+        "side": "server",
+        "file": "equusferus:entities/ferus/ferus",
+        "op": "addmerge",
+        "path": "/server/behaviors/-",
+        "value": {
+            "code": "EntityFootprintsBehaviorSync",
+            "attributes": {
+                "texture": "horse",
+                "stepDistanceByType": {
+							"*-adult-*-ferus": 0.9,
+							"*-juvenile-*-ferus": 0.7,
+							"*-yearling-*-ferus": 0.6,
+							"*-baby-*-ferus": 0.5
+						},
+            }
+        }
+    },
+    {
+        "dependsOn": [ { "modid": "footprints" } ],
+        "side": "server",
+        "file": "equusferus:entities/ferus/ferus",
+        "op": "addmerge",
+        "path": "/client/behaviors/-",
+        "value": {
+            "code": "EntityFootprintsBehavior",
+            "attributes": {
+                "texture": "horse",
+                "stepDistanceByType": {
+							"*-adult-*-ferus": 0.9,
+							"*-juvenile-*-ferus": 0.7,
+							"*-yearling-*-ferus": 0.6,
+							"*-baby-*-ferus": 0.5
+						},
+            }
+        }
+    },
+    {
+        "dependsOn": [ { "modid": "footprints" } ],
+        "side": "server",
+        "file": "equusferus:entities/ferus/ferus-unhandled",
+        "op": "addmerge",
+        "path": "/server/behaviors/-",
+        "value": {
+            "code": "EntityFootprintsBehaviorSync",
+            "attributes": {
+                "texture": "horse",
+                "stepDistance": 0.75
+            }
+        }
+    },
+    {
+        "dependsOn": [ { "modid": "footprints" } ],
+        "side": "server",
+        "file": "equusferus:entities/ferus/ferus-unhandled",
+        "op": "addmerge",
+        "path": "/client/behaviors/-",
+        "value": {
+            "code": "EntityFootprintsBehavior",
+            "attributes": {
+                "texture": "horse",
+                "stepDistance": 0.75
+            }
+        }
+    },
+]

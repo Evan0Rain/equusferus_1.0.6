@@ -1,0 +1,22 @@
+  [
+    {
+      "op": "remove",
+      "path": "/attributes/attachableToEntity/attachedShapeBySlotCodeByType/*/*",
+      "file": "game:itemtypes/wearable/animal/hooved.json",
+      "side": "Server"
+    },
+    {
+      "file": "game:itemtypes/wearable/animal/hooved.json",
+        "op": "addmerge",
+      "path": "/attributes/attachableToEntity/attachedShapeBySlotCodeByType/*",
+        "value":{ "lowerbackside-newferus":{"base": "equusferus:item/wearable/{type}-newferus"}},
+        "side": "server"
+    },    
+    {
+      "file": "game:itemtypes/wearable/animal/hooved.json",
+        "op": "addmerge",
+      "path": "/attributes/attachableToEntity/attachedShapeBySlotCodeByType/*",
+        "value":{ "*":{"base": "item/wearable/hooved/{type}-elk"}},
+        "side": "server"
+    },
+  ]

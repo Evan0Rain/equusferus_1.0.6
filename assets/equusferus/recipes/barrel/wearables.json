@@ -1,0 +1,73 @@
+[
+  
+    {
+    "code": "wearabledye1",
+    "sealHours": 6,
+    "ingredients": [
+      {
+        "type": "item",
+        "code": "game:dye-*",
+        "name": "color",
+        "allowedVariants": [ "white", "black", "green", "blue", "orange", "red", "yellow", "purple", "pink", "gray" ],
+        "litres": 6,
+        "consumeLitres": 6
+      },
+      {
+        "type": "item",
+        "code": "saddle-plain",
+        "quantity": 1
+      }
+    ],
+    "recipeGroup": 1,
+    "output": {
+      "type": "item",
+      "code": "saddle-{color}",
+      "stackSize": 1
+    }
+  },
+  {
+    "code": "saddletannin",
+    "sealHours": 10,
+    "ingredients": [
+      {
+        "type": "item",
+        "code": "game:strongtanninportion",
+        "litres": 10,
+        "consumeLitres": 10
+      },
+      {
+        "type": "item",
+        "code": "saddle-plain",
+        "quantity": 1
+      }
+    ],
+    "recipeGroup": 2,
+    "output": {
+      "type": "item",
+      "code": "saddle-brown",
+      "stackSize": 1
+    }
+  },
+  {
+    "code": "wearablewoad1",
+    "sealHours": 6,
+    "ingredients": [
+      {
+        "type": "item",
+        "code": "game:dye-woad",
+        "litres": 6,
+        "consumeLitres": 6
+      },
+      {
+        "type": "item",
+        "code": "saddle-plain",
+        "quantity": 1
+      }
+    ],
+    "recipeGroup": 3,
+    "output": {
+      "type": "item",
+      "code": "saddle-blue",
+      "stackSize": 1
+    }
+  }]

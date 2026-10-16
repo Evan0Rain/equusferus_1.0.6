@@ -1,0 +1,36 @@
+{
+    "genes": {
+        "autosomal": [
+            { "agouti": ["wildtype", "black"] },
+            { "extension": ["wildtype", "red"] },
+            { "cream": ["wildtype", "cream"] },
+            { "roan": ["wildtype", "roan"] },
+            { "tobiano": ["wildtype", "tobiano"] },
+            { "leopard": ["wildtype", "leopard"] },
+            { "dun": ["wildtype", "nodun"] },
+            { "mealy": ["wildtype", "nomealy"] }
+        ],
+        "anonymous": [
+            { "deleterious": 16 }
+        ],
+        "bitwise": [
+            { "coi": 256 }
+        ]
+    },
+    "interpreters": [ "Polygenes"],
+    "sexdetermination": "xy",
+    "initializers": {
+        "ferus": {
+            "autosomal": {
+                "agouti": { "default": "wildtype", "black": 0.4 },
+                "extension": { "default": "wildtype", "red": 0.5 },
+                "cream": { "default": "wildtype", "cream": 0.1 },
+                "roan": { "default": "wildtype", "roan": 0.1 },
+                "tobiano": { "default": "wildtype", "tobiano": 0.1 },
+                "leopard": { "default": "wildtype", "leopard": 0.1 },
+                "dun": { "default": "wildtype", "nodun": 0.5 },
+                "mealy": { "default": "wildtype", "nomealy": 0.5 }
+            }
+        }
+    }
+}

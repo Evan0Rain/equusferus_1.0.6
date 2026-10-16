@@ -1,0 +1,101 @@
+{
+	"enabled": true,
+	"code": "bridle",
+	"variantgroups": [
+		{
+			"code": "control",
+			"states": [ "hold", "press" ]
+		}
+	],
+	"allowedVariants": [
+		"*"
+	],
+	"attributes": {
+		"attachableToEntity": {
+			"texturePrefixCode": "",
+			"categoryCodeByType": {
+				"*": "ferusbridle"
+			},
+			"attachedShapeBySlotCodeByType": {
+				"*": {
+					"*": { "base": "item/wearable/ferusbridle-{control}" }
+				}
+			}
+		},
+		"controlSchemeByType": {
+			"*hold*": "Hold",
+			"*press*": "Press"
+		},
+		"isBridleByType": {
+			"*": true
+		},
+			"groundStorageTransform": {
+				"translation": {
+					"x": 0.25,
+					"y": -0,
+					"z": -0
+				},
+				"rotation": {
+					"x": 0,
+					"y": 90,
+					"z": 0
+				}
+			}
+		
+	},
+	"shapeByType": {
+		"*": { "base": "item/wearable/ferusbridle-{control}-inventory" }
+	},
+	"texturesByType": {
+		"*": {
+			"bridlemetal": { "base": "game:block/metal/sheet-plain/gold3" },
+			"saddlemain": { "base": "game:item/tool/shield/leather/brown" },
+			"bridlemain": { "base": "game:item/tool/shield/leather/brown" }
+		}
+	},
+		"heldTpIdleAnimationByType": {
+			"*none*": "holdbothhands"
+		},
+		"behaviors": [
+			{
+				"name": "GroundStorable",
+				"properties": {
+					"layout": "Halves"
+				}
+			}
+		],
+		"maxStackSize": 4,
+		"creativeinventory": {
+			"general": [ "*" ],
+			"items": [ "*" ],
+			"equus": [ "*" ]
+		},
+		"renderAlphaTest": 0.25,
+		"guiTransformByType": {
+			"*": {
+				"rotation": {
+					"x": 133,
+					"y": -103,
+					"z": 0
+				},
+				"origin": {
+					"x": 0.6,
+					"y": -0.1,
+					"z": 0.15
+				},
+				"scale": 2.2
+			}
+		},
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.2, "z": 0.5299 },
+		"scale": 4.58
+	},
+	"tpHandTransform": {
+		"translation": { "x": -0.1, "y": -0.2, "z": 0.5 },
+		"rotation": { "x": 0, "y": 75, "z": 90 },
+		"origin": { "x": 0.3, "y": -0.3, "z": -0.1 },
+		"scale": 1
+	}
+	}

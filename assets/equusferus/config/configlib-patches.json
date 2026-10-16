@@ -1,0 +1,350 @@
+{
+  "version": 3,
+  "patches": {
+    "float":{
+      "equusferus:entities/ferus/ferus-wild.json": {
+        "server/spawnconditions/worldgen/triesPerChunk/avg": "WorldGenSpawnRateFerus / 1000",
+        "server/spawnconditions/runtime/chanceByType/*-adult-*": "RuntimeSpawnRateFerus / 100000",
+        "behaviorConfigs/jaunt:rideable/saddleBreakDayInterval": "saddlebreakCooldownWild",
+        "behaviorConfigs/jaunt:rideable/saddleBreaksRequired/avg": "saddlebreaksWildAvg",
+        "behaviorConfigs/jaunt:rideable/saddleBreaksRequired/var": "saddlebreaksWildVar"
+      },
+
+    "equusferus:entities/ferus/ferus.json": {
+        "/behaviorConfigs/jaunt:gait/gaits/code=walkback/movespeedByType/*-ferus": "walkback_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=walk/movespeedByType/*-ferus": "walk_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=trot/movespeedByType/*-ferus": "trot_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=canter/movespeedByType/*-ferus": "canter_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=gallop/movespeedByType/*-ferus": "gallop_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swim/movespeedByType/*-ferus": "swim_speed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swimback/movespeedByType/*-ferus": "swimback_speed_ferus",
+
+        "/behaviorConfigs/jaunt:gait/gaits/code=walkback/animationSpeed": "(walkback_speed_ferus / 0.010) * 2.5",
+        "/behaviorConfigs/jaunt:gait/gaits/code=walk/animationSpeed": "(walk_speed_ferus / 0.010) * 2.5",
+        "/behaviorConfigs/jaunt:gait/gaits/code=trot/animationSpeed": "(trot_speed_ferus / 0.03) * 3.1",
+        "/behaviorConfigs/jaunt:gait/gaits/code=canter/animationSpeed": "(canter_speed_ferus / 0.06) * 3.8",
+        "/behaviorConfigs/jaunt:gait/gaits/code=gallop/animationSpeed": "(gallop_speed_ferus / 0.115) * 4.5",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swim/animationSpeed": "(swim_speed_ferus / 0.02) * 1.0",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swimback/animationSpeed": "(swimback_speed_ferus / 0.01) * 0.5",
+
+        "/behaviorConfigs/jaunt:gait/gaits/code=walkback/staminaCost": "walkback_staminacost_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=walk/staminaCost": "walk_staminacost_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=trot/staminaCost": "trot_staminacost_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=canter/staminaCost": "canter_staminacost_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=gallop/staminaCost": "gallop_staminacost_ferus",
+
+        "/behaviorConfigs/jaunt:gait/gaits/code=walkback/yawMultiplier": "walkback_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=walk/yawMultiplier": "walk_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=trot/yawMultiplier": "trot_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=canter/yawMultiplier": "canter_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=gallop/yawMultiplier": "gallop_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swim/yawMultiplier": "swim_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=swimback/yawMultiplier": "swimback_turnspeed_ferus",
+
+        "/behaviorConfigs/jaunt:gait/gaits/code=tread/yawMultiplier": "tread_turnspeed_ferus",
+        "/behaviorConfigs/jaunt:gait/gaits/code=idle/yawMultiplier": "idle_turnspeed_ferus",
+
+        "/behaviorConfigs/jaunt:stamina/maxstamina": "maxstamina_ferus * 150",
+        "/behaviorConfigs/jaunt:stamina/swimFatigue": "swimstaminacost_ferus",
+        "/behaviorConfigs/jaunt:stamina/staminaRegenRate": "staminaregen_ferus",
+
+        "/behaviorConfigs/genelib.multiply/pregnancyDays": "pregnancydays_ferus",
+        "/behaviorConfigs/genelib.multiply/multiplyCooldownDaysMin": "(pregnancycooldown_ferus * 0.9)",
+        "/behaviorConfigs/genelib.multiply/multiplyCooldownDaysMax": "(pregnancycooldown_ferus * 1.1)"
+    }
+  },
+  "boolean": {
+      "equusferus:patches/configpatches.json": {
+        "/0/enabled": "disableswimback"
+      }
+    }
+},
+  "settings":[   
+    {
+      "type": "separator",
+      "title": "settings-wildhorses",
+      "weight": 1.0
+    },    
+    {
+      "code": "WorldGenSpawnRateFerus",
+      "type": "float",
+      "ingui": "setting-worldgen-spawnrate-ferus",
+      "logarithmic": false,
+      "default": 1.0,
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step":0.1
+      }
+    },
+    {
+      "code": "RuntimeSpawnRateFerus",
+      "type": "float",
+      "ingui": "setting-runtime-spawnrate-ferus",
+      "logarithmic": false,
+      "default": 1.0,
+      "range": {
+        "min": 0.0,
+        "max": 1000.0,
+        "step":0.1
+      }
+    },
+    {
+      "code": "saddlebreakCooldownWild",
+      "type": "float",
+      "ingui": "setting-saddlebreak-cooldown",
+      "default": 0.00,
+      "range": {
+        "min": 0.00,
+        "max": 1.00,
+        "step":0.01
+      }
+    },
+    {
+      "code": "saddlebreaksWildAvg",
+      "type": "float",
+      "ingui": "setting-saddlebreaks-avg",
+      "default": 15,
+      "range": {
+        "min": 1,
+        "max": 50,
+        "step":0.5
+      }
+    },
+    {
+      "code": "saddlebreaksWildVar",
+      "type": "float",
+      "ingui": "setting-saddlebreaks-var",
+      "default": 2,
+      "range": {
+        "min": 0,
+        "max": 10,
+        "step":0.5
+      }
+    },    
+    {
+      "type": "separator","title": "setting-pregnancysettings", "weight": 1.0,"collapsible": true
+    },
+    {
+      "code": "pregnancydays_ferus",
+      "type": "float",
+      "ingui": "setting-pregnancydays",
+      "default": 85,
+      "range": {"min": 1, "max": 100, "step":1}
+    },
+    {
+      "code": "pregnancycooldown_ferus",
+      "type": "float",
+      "ingui": "setting-pregnancycooldown",
+      "default": 10,
+      "range": {"min": 1, "max": 100, "step":1}
+    },
+    {
+      "type": "separator","title": "setting-stamina", "weight": 1.0,"collapsible": true
+    },
+    {
+      "code": "maxstamina_ferus",
+      "type": "float",
+      "ingui": "setting-maxstamina",
+      "default": 1.0,
+      "range": {"min": 0.1, "max": 2.0, "step":0.1}
+    },
+    {
+      "code": "staminaregen_ferus",
+      "type": "float",
+      "ingui": "setting-staminaregen",
+      "default": 1.0,
+      "range": {"min": 0.1, "max": 2.0, "step":0.1}
+    },
+    {
+      "type": "separator","text": "setting-staminacost", "weight": 1.0
+    },  
+    {
+      "code": "swimstaminacost_ferus",
+      "type": "float",
+      "ingui": "setting-swimstaminacost",
+      "default": 0.1,
+      "range": {"min": 0.01, "max": 1.00, "step":0.01}
+    },     
+    {
+      "code": "walkback_staminacost_ferus",
+      "type": "float",
+      "ingui": "setting-walkback",
+      "default": 0.0,
+      "range": {"min": 0.000, "max": 1.000, "step":0.001}
+    },  
+    {
+      "code": "walk_staminacost_ferus",
+      "type": "float",
+      "ingui": "setting-walk",
+      "default": 0.0,
+      "range": {"min": 0.000, "max": 1.000, "step":0.001}
+    },    
+    {
+      "code": "trot_staminacost_ferus",
+      "type": "float",
+      "ingui": "setting-trot",
+      "default": 0.0,
+      "range": {"min": 0.000, "max": 1.000, "step":0.001}
+    },        
+    {
+      "code": "canter_staminacost_ferus",
+      "type": "float",
+      "ingui": "setting-canter",
+      "default": 0.001,
+      "range": {"min": 0.000, "max": 1.000, "step":0.001}
+    },  
+    {
+      "code": "gallop_staminacost_ferus",
+      "type": "float",
+      "ingui": "setting-gallop",
+      "default": 0.15,
+      "range": {"min": 0.000, "max": 1.000, "step":0.001}
+    },  
+    {
+      "type": "separator","weight": 1.0
+    },
+    {
+      "type": "separator","title": "setting-speedsettings", "weight": 1.0,"collapsible": true
+    },     
+    {
+      "code": "idle_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed-idle",
+      "default": 0.7,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },
+    {
+      "code": "tread_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed-tread",
+      "default": 1.0,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    }, 
+    {
+      "type": "separator","text": "setting-walkback","weight": 1.0
+    },
+    {
+      "code": "walkback_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.010,
+      "range": {"min": 0.001, "max": 0.100, "step":0.005}
+    },    
+    {
+      "code": "walkback_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.0,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    }, 
+    {
+      "type": "separator","text": "setting-walk","weight": 1.0
+    },
+    {
+      "code": "walk_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.010,
+      "range": {"min": 0.001, "max": 0.100, "step":0.005}
+    },    
+    {
+      "code": "walk_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 0.6,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },       
+      {
+      "type": "separator","text": "setting-trot","weight": 1.0
+    },
+    {
+      "code": "trot_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.03,
+      "range": {"min": 0.010, "max": 0.200, "step":0.005}
+    },    
+    {
+      "code": "trot_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.2,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },     
+    {
+      "type": "separator","text": "setting-canter","weight": 1.0
+    },
+    {
+      "code": "canter_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.06,
+      "range": {"min": 0.010, "max": 0.200, "step":0.005}
+    },    
+    {
+      "code": "canter_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.1,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },      
+    {
+      "type": "separator", "text": "setting-gallop","weight": 1.0
+    },
+   {
+      "code": "gallop_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.115,
+      "range": {"min": 0.010, "max": 0.200, "step":0.005}
+    },    
+    {
+      "code": "gallop_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.0,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },  
+    {
+      "type": "separator","text": "setting-swim","weight": 1.0
+    },
+    {
+      "code": "swim_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.020,
+      "range": {"min": 0.001, "max": 0.200, "step":0.005}
+    },    
+    {
+      "code": "swim_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.00,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },   
+    {
+      "type": "separator","text": "setting-swimback","weight": 1.0
+    },
+    {
+      "code": "swimback_speed_ferus",
+      "type": "float",
+      "ingui": "setting-speed",
+      "default": 0.010,
+      "range": {"min": 0.001, "max": 0.100, "step":0.005}
+    },    
+    {
+      "code": "swimback_turnspeed_ferus",
+      "type": "float",
+      "ingui": "setting-turnspeed",
+      "default": 1.00,
+      "range": {"min": 0.10, "max": 2.00, "step":0.05}
+    },    
+    {
+      "code": "disableswimback",
+      "type": "boolean",
+      "ingui": "setting-disableswimback",
+      "default": false
+    }
+  ]
+}

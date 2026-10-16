@@ -1,0 +1,112 @@
+{
+///Переклав|Translation from:DeanBro
+    "game:creaturegroup-horse-ferus": "Ferus",
+    "game:tabname-equus": "Equus:Horses",
+
+	"equusferus:item-creature-horse-juvenile-female-ferus": "Молода лошиця Ферус",
+	"equusferus:item-creature-horse-juvenile-male-ferus": "Молодий лошак Ферус",
+	"equusferus:item-creature-horse-yearling-female-ferus": "Річна лошиця Ферус",
+	"equusferus:item-creature-horse-yearling-male-ferus": "Річний лошак Ферус",
+	"equusferus:item-creature-horse-adult-female-ferus": "Кобила Ферус",
+	"equusferus:item-creature-horse-adult-male-ferus": "Жеребець Ферус",
+	"equusferus:item-creature-horse-baby-female-ferus": "Лошиця Ферус",
+	"equusferus:item-creature-horse-baby-male-ferus": "Лошак Ферус",
+
+	"equusferus:item-creature-wildhorse-juvenile-female-ferus": "Дика молода лошиця Ферус",
+	"equusferus:item-creature-wildhorse-juvenile-male-ferus": "Дикий молодий лошак Ферус",
+	"equusferus:item-creature-wildhorse-yearling-female-ferus": "Дика річна лошиця Ферус",
+	"equusferus:item-creature-wildhorse-yearling-male-ferus": "Дикий річний лошак Ферус",
+	"equusferus:item-creature-wildhorse-adult-female-ferus": "Дика кобила Ферус",
+	"equusferus:item-creature-wildhorse-adult-male-ferus": "Дикий жеребець Ферус",
+	"equusferus:item-creature-wildhorse-baby-female-ferus": "Дика лошиця Ферус",
+	"equusferus:item-creature-wildhorse-baby-male-ferus": "Дикий лошак Ферус",
+
+	"equusferus:item-creature-unhandledhorse-adult-female-ferus": "Необ’їжджена кобила Ферус",
+	"equusferus:item-creature-unhandledhorse-adult-male-ferus": "Необ’їжджений жеребець Ферус",
+
+	"equusferus:itemdesc-creature-unhandledhorse-adult-*-ferus": "Необ’їжджений кінь Ферус. <br> Такий кінь не зустрічається в дикій природі, його можна лише вивести від приручених коней Ферус",
+	"equusferus:itemdesc-creature-wildhorse-adult-*-ferus": "Дикий кінь Ферус.",
+	"equusferus:itemdesc-creature-horse-adult-*-ferus": "Приручений кінь Ферус.",
+	"equusferus:itemdesc-creature-horse-juvenile-*-ferus": "Такий кінь не зустрічається в дикій природі, його можна лише вивести від приручених коней Ферус",
+	"equusferus:itemdesc-creature-horse-yearling-*-ferus": "Такий кінь не зустрічається в дикій природі, його можна лише вивести від приручених коней Ферус",
+	"equusferus:itemdesc-creature-horse-baby-*-ferus": "Такий кінь не зустрічається в дикій природі, його можна лише вивести від приручених коней Ферус",
+
+	"equusferus:item-dead-creature-*horse-adult-female-ferus": "Мертва кобила Ферус",
+	"equusferus:item-dead-creature-*horse-adult-male-ferus": "Мертвий жеребець Ферус",
+	"equusferus:item-dead-creature-horse-baby-female-ferus": "Мертва лошиця Ферус",
+	"equusferus:item-dead-creature-horse-baby-male-ferus": "Мертвий лошак Ферус",
+	"equusferus:item-dead-creature-horse-juvenile-female-ferus": "Мертва молода лошиця Ферус",
+	"equusferus:item-dead-creature-horse-juvenile-male-ferus": "Мертвий молодий лошак Ферус",
+	"equusferus:item-dead-creature-horse-yearling-female-ferus": "Мертва річна лошиця Ферус",
+	"equusferus:item-dead-creature-horse-yearling-male-ferus": "Мертвий річний лошак Ферус",
+
+	"game:prefixandcreature-horseadultfemaleferus": "Кобила Ферус",
+	"game:prefixandcreature-horseadultmaleferus": "Жеребець Ферус",
+	"game:prefixandcreature-horsebabyfemaleferus": "Лошиця Ферус",
+	"game:prefixandcreature-horsebabymaleferus": "Лошак Ферус",
+
+	"equusferus:item-bridle-hold": "Трензельна вуздечка Ферус",
+	"equusferus:item-bridle-press": "Мундштукова вуздечка Ферус",
+	"equusferus:itemdesc-bridle-hold": "Корисна для точних, коротких подорожей",
+	"equusferus:itemdesc-bridle-press": "Корисна для далеких подорожей",
+
+	"equusferus:item-pillion": "Пілон Ферус",
+
+	"equusferus:item-saddle-black": "Сідло Ферус (чорне)",
+	"equusferus:item-saddle-blue": "Сідло Ферус (синє)",
+	"equusferus:item-saddle-brown": "Сідло Ферус (коричневе)",
+	"equusferus:item-saddle-gray": "Сідло Ферус (сіре)",
+	"equusferus:item-saddle-green": "Сідло Ферус (зелене)",
+	"equusferus:item-saddle-orange": "Сідло Ферус (помаранчеве)",
+	"equusferus:item-saddle-pink": "Сідло Ферус (рожеве)",
+	"equusferus:item-saddle-plain": "Сідло Ферус (звичайне)",
+	"equusferus:item-saddle-purple": "Сідло Ферус (пурпурове)",
+	"equusferus:item-saddle-red": "Сідло Ферус (червоне)",
+	"equusferus:item-saddle-white": "Сідло Ферус (біле)",
+	"equusferus:item-saddle-yellow": "Сідло Ферус (жовте)",
+// Setting //
+  "setting-speedsettings": "Налаштування швидкості:",
+  "setting-tradersettings": "Налаштування торгівлі:",
+  "setting-title-ferus": "Ферус:",
+  "setting-ferus": "Ферус",
+
+
+  "setting-stamina": "Налаштування витривалості:",
+  "setting-maxstamina": "Максимальна витривалість:",
+  "setting-staminaregen": "Відновлення витривалості",
+  "setting-speed": "Швидкість руху",
+  "setting-turnspeed": "Швидкість повороту",
+  "setting-staminacost": "Витрати витривалості:",
+
+  "setting-swimback": "Плавання назад:",
+  "setting-swim": "Плавання:",
+  "setting-turnspeed-tread": "Швидкість повороту під час плавання на місці",
+  "setting-turnspeed-idle": "Швидкість повороту під час стояння",
+  "setting-disableswimback": "Вимкнути плавання назад",
+
+  "setting-walkback": "Хода назад",
+  "setting-walk": "Хода",
+  "setting-canter": "Рись",
+  "setting-trot": "Крок",
+  "setting-gallop": "Галоп",
+  "setting-swimstaminacost": "під час плавання",
+
+  "setting-pregnancysettings": "Налаштування вагітності:",
+  "setting-pregnancydays": "Середня тривалість вагітності",
+  "setting-pregnancycooldown": "Середній період відновлення після вагітності",
+
+// Attachments Slots //
+  "creature-equusdestrier:*-selectionbox-NeckAP": "<br><font color='cornflowerblue'>• Місце для ліхтаря •</font>",
+  "creature-equusdestrier:*-selectionbox-MidAP": "<br><font color='cornflowerblue'>• Місце для сідла •</font>",
+  "creature-equusdestrier:*-selectionbox-BlanketAP": "<br><font color='cornflowerblue'>• Місце для попони •</font>",
+  "creature-equusdestrier:*-selectionbox-HeadAP": "<br><font color='cornflowerblue'>• Місце для вуздечки •</font>",
+  "creature-equusdestrier:*-selectionbox-FaceAP": "<br><font color='cornflowerblue'>• Місце для медальйона •</font>",
+  "creature-equusdestrier:*-selectionbox-RearAP": "<br><font color='cornflowerblue'>• Місце для спальника •</font>",
+  "creature-equusdestrier:*-selectionbox-RearSideAP": "<br><font color='cornflowerblue'>• Місце для сідельних сумок •</font>",
+  "creature-equusdestrier:*-selectionbox-HoofAP": "<br><font color='cornflowerblue'>• Місце для підкови •</font>",
+  "creature-equusdestrier:*-selectionbox-RidingAP": "<br><font color='cornflowerblue'>• Місце вершника •</font>"
+}		
+
+
+
+

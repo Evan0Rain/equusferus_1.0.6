@@ -1,0 +1,426 @@
+{
+	"code": "wildhorse",
+	"class": "EntityAgent",
+	"tags": ["animal", "tamed", "habitat-land"],
+	"inheritFrom": "equusferus:entities/ferus/ferus",
+	"variantgroups": [
+		{"code": "age","states": [ "adult", "juvenile", "yearling", "baby"]},
+		{ "code": "gender","states": [ "female","male"]},
+		{ "code": "type","states": [ "ferus"]}
+	],
+	"behaviorConfigs": {
+		"selectionboxes": {
+			"selectionBoxes": [ "RidingAP" ],
+			"enabledByType": {
+				"*adult*": true,
+				"*": false
+			}
+		},		
+		"attachable": {
+			"wearableSlots": [
+				{ "code": "Riding-new{type}", "forCategoryCodes": [""], "attachmentPointCode": "RidingAP", "stepParentTo": { "": { "elementName": "RidingStorage" } }, "behindSlots": ["lowerback-ferus","lowerbackside-ferus"] }
+		],
+		"enabledByType": {
+				"*adult*": true,
+				"*": false
+			}
+		},
+		"jaunt:rideable": {
+			"saddleBreakGait": "gallop",
+			"saddleBreaksRequired": { "avg": 15, "var": 2 }, 
+			"saddleBreakDayInterval": 0,
+			"tamedEntityCode": "equusferus:horse-{age}-{gender}-{type}",
+			"enabledByType": {
+				"*adult*": true,
+				"*": false
+			}
+		},
+				"taskai": {
+				"aiCreatureType": "LandCreature",
+				"aitasks": [
+					{
+						"code": "meleeattack",
+						"animation": "Attack",
+						"enabledByType": {
+							"*-baby-*": false,
+							"*": true},
+						"entityCodesByType": {
+							"*-adult-*": ["player","bell-*","bowtorn-*","drifter-*","hyena-*","locust-*","shiver-*","bear-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"]},
+						"priority": 3,
+						"slot": 1,
+						"damageByType": {
+							"*-adult-*-ferus":7
+						},
+						"knockbackStrengthByType": { "*":2},
+						"damageTierByType": { "*":3},
+						"mincooldown": 500,
+						"maxcooldown": 1000,
+						"attackDurationMs": 500,
+						"damagePlayerAtMs": 250,
+						"animationSpeed": 1,
+						"whenInEmotionState": "aggressiveondamage"
+					},
+					{
+						"code": "fleeentity",
+						"whenInEmotionState": "fleeondamage",
+						"entityCodes": [ "player","bear-*","bell-*","bowtorn-*","drifter-*","hyena-*","locust-*","moose-*","shiver-*","bear-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"],
+						"priority": 1.8,
+						"movespeed": 0.115,
+						"seekingRange": 12,
+						"animation": "Gallop",
+						"animationSpeed": 4.5
+					},
+					{
+						"code": "fleeentity",
+						"enabledByType":{
+							"wildhorse*": true,
+							"*": false
+						},
+						"entityCodes": ["player","bear-*","hyena-*","wolf-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"],
+						"priority": 1.72,
+						"movespeed": 0.115,
+						"seekingRange": 10,
+						"animation": "Gallop",
+						"animationSpeed": 4.5
+					},
+					{
+						"code": "fleeentity",
+						"enabledByType":{
+							"wildhorse*": true,
+							"*": false
+						},
+						"entityCodes": ["player","bear-*","hyena-*","wolf-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"],
+						"priority": 1.71,
+						"movespeed": 0.06,
+						"seekingRange": 20,
+						"animation": "canter",
+						"animationSpeed": 3.8
+					},
+					{
+						"code": "fleeentity",
+						"enabledByType":{
+							"wildhorse*": true,
+							"*": false
+						},
+						"entityCodes": ["player","bear-*","hyena-*","wolf-*", "caninae-canina-adult-*","felinae-adult-*","machairodontinae-adult-*", "pantherinae-neofelis-adult-*", "pantherinae-panthera-adult-*","thylacoleonidae-adult-*"],
+						"priority": 1.7,
+						"movespeed": 0.03,
+						"seekingRange": 30,
+						"animation": "trot",
+						"animationSpeed": 3.1
+					},
+					{
+						"code": "getoutofwater",
+						"animation": "Swim",
+						"priority": 1.4,
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.015,
+							"*-juvenile-*-ferus": 0.013,
+							"*-yearling-*-ferus": 0.012,
+							"*-baby-*-ferus": 0.010
+						},
+						"animationSpeed": 1.0
+					},
+					{
+						"code": "idle",
+						"animation": "nap",
+						"priority": 1.2,
+						"minduration": 20000,
+						"maxduration": 240000,
+						"mincooldown": 60000,
+						"maxcooldown": 120000,
+						"priorityForCancel": 1.28,
+						"chanceByType": { "*-adult-*":0.01,"*":0.2},
+						"stopOnNearbyEntityCodes": [ "player", "bear-*","hyena-male", "hyena-female","bear-male", "bear-female"  ],
+						"stopRange": 20,
+						"stopOnHurt": true,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "Idle",
+						"priority": 1.2,
+						"minduration": 2000,
+						"maxduration": 24000,
+						"mincooldown": 6000,
+						"maxcooldown": 12000,
+						"priorityForCancel": 1.28,
+						"stopOnNearbyEntityCodes": [ "player", "bear-*","hyena-male", "hyena-female","bear-male", "bear-female"  ],
+						"stopRange": 20,
+						"stopOnHurt": true,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "nap",
+						"priority": 1.6,
+						"minduration": 20000,
+						"maxduration": 80000,
+						"mincooldown": 20000,
+						"maxcooldown": 40000,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage",
+						"duringDayTimeFramesByType": {
+							"*":[{ "fromHour": 20,"toHour": 22},{ "fromHour": 5,"toHour": 6}]},
+						"stopOnNearbyEntityCodes": [ "player" ],
+						"stopRange": 2,
+						"stopOnHurt": true
+					},
+					{
+						"code": "stayclosetoentity",
+						"animation": "canter",
+						"enabledByType": {
+							"*-baby-*": true,
+							"*-yearling-*": true,
+                            "*": false
+						},
+						"priority": 2.95,
+						"entityCodeByType": {
+							"*-baby-*": "wildhorse-adult-female-{type}",
+							"*-yearling-*": "wildhorse-adult-female-{type}"
+						},
+						"movespeedByType": {
+							"*-baby-*-ferus": 0.03
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 4.2,
+							"*-yearling-*": 3.8
+						},
+						"maxDistanceByType": { 
+							"*-baby-*": 5,
+							"*-yearling-*": 10
+						},
+						"searchRange": 50,
+						"minduration": 500,
+						"maxduration": 5000,
+						"mincooldown": 1000,
+						"maxcooldown": 3000
+					},
+					{
+						"code": "stayclosetoentity",
+						"animation": "trot",
+						"enabledByType": {
+							"*-baby-*": false,
+							"*-yearling-*": false,
+							"*-adult-male-*": false,
+                            "*": true
+						},
+						"priority": 2.95,
+						"entityCodeByType": {
+							"*": "wildhorse-adult-male-{type}"
+						},
+						"movespeedByType": {
+							"*-ferus": 0.03
+						},
+						"animationSpeedByType": {
+							"*-adult-*": 3.1,
+							"*-juvenile-*": 3.4
+						},
+						"maxDistance": 10,
+						"searchRange": 40,
+						"minduration": 500,
+						"maxduration": 5000,
+						"mincooldown": 1000,
+						"maxcooldown": 3000
+					},
+					{
+						"code": "idle",
+						"animation": "Sleep",
+						"priority": 1.6,
+						"minduration": 20000,
+						"maxduration": 80000,
+						"mincooldown": 20000,
+						"maxcooldown": 40000,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage",
+						"duringDayTimeFramesByType": {
+							"*":[{ "fromHour": 22,"toHour": 24},{ "fromHour": 0,"toHour": 5}]},
+						"stopOnNearbyEntityCodes": [ "player" ],
+						"stopRange": 10,
+						"stopOnHurt": true
+					},
+					{
+						"code": "seekfoodandeat",
+						"animation": "Walk",
+						"eatAnimation": "Eat",
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.008,
+							"*-juvenile-*-ferus": 0.008,
+							"*-yearling-*-ferus": 0.008,
+							"*-baby-*-ferus": 0.008
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 2.1,
+							"*-yearling-*": 2.0,
+							"*-juvenile-*": 1.9,
+							"*": 1.9
+						},
+						"priority": 1.34,
+						"eatSoundByType": {
+							"*":"game:creature/animal-eat*"},
+						"eatTime": 1.5,
+						"eatLooseItems": true,
+						"mincooldownHours": 1,
+						"maxcooldownHours": 4,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "Eat",
+						"priority": 1.2,
+						"priorityForCancel": 1.35,
+						"minduration": 3000,
+						"maxduration": 24000,
+						"mincooldown": 9000,
+						"maxcooldown": 20000,
+						"animationSpeed": 1,
+						"soundByType": { "*":"game:creature/animal-eat*"},
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "idle",
+						"animation": "look",
+						"priority": 1.2,
+						"priorityForCancel": 1.35,
+						"minduration": 3000,
+						"maxduration": 3000,
+						"mincooldown": 9000,
+						"maxcooldown": 20000,
+						"animationSpeed": 1,
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					},
+					{
+						"code": "wander",
+						"animation": "Walk",
+						"priority": 1.0,
+						"priorityForCancel": 1.35,
+						"preferredLightLevel": 24,
+						"wanderChanceByType": { "*adult*":0.1,"*":0.5},
+						"movespeedByType": {
+							"*-adult-*-ferus": 0.008,
+							"*-juvenile-*-ferus": 0.0073,
+							"*-yearling-*-ferus": 0.0067,
+							"*-baby-*-ferus": 0.006
+						},
+						"animationSpeedByType": {
+							"*-baby-*": 2.1,
+							"*-juvenile-*": 2.0,
+							"*-yearling-*": 1.9,
+							"*": 1.9
+						},
+						"wanderRangeMaxByType": { "*-adult-male-*":50,"*-adult-female-*":50,"*-baby-*":20},
+						"whenNotInEmotionState": "aggressiveondamage|aggressivearoundentities|fleeondamage"
+					}
+				]
+			}
+	},
+	"drops": [],
+	"client": {
+		"behaviors": [
+			{ "code": "repulseagents" },
+			{ "code": "controlledphysics"},
+			{ "code": "floatupwhenstuck","onlyWhenDead": true},
+			{ "code": "genelib.genetics"},
+			{ "code": "interpolateposition" },
+			{ "code": "mortallywoundable", "WhenBelowHealth": 0.5, "RemainAliveHours": 0, "enabledByType": {"*": true}  },
+			{ "code": "harvestable"},
+			{ "code": "health" },
+			{ "code": "ownable"},
+			{ "code": "attachable"},
+			{ "code": "jaunt:rideable"},
+			{ "code": "selectionboxes"},
+			{ "code": "jaunt:gait" },
+			{ "code": "jaunt:stamina" },
+			{ "code": "genelib.info", "showtagonlywhentargeted": true }
+		]
+	},
+	"server": {
+		"behaviors": [
+			{ "code": "ownable"},
+			{ "code": "repulseagents" },
+			{ "code": "genelib.genetics"},
+			{ "code": "controlledphysics"},
+			{ "code": "mortallywoundable", "WhenBelowHealth": 0.5, "RemainAliveHours": 0, "enabledByType": {"*": true} },
+			{ "code": "taskai"},
+			{ "code":"emotionstates"},
+			{ "code": "grow",
+					"enabledByType": {
+					"*adult*": false,
+					"*": true
+				},
+				"hoursToGrowByType": {	
+					"*-juvenile-*": 400,
+					"*-yearling-*": 400,
+					"*-baby-*": 400
+				},
+				"adultEntityCodesByType": {
+					"*-baby-female-*": ["equusferus:wildhorse-yearling-female-{type}"],
+					"*-baby-male-*": ["equusferus:wildhorse-yearling-male-{type}"],
+					"*-yearling-female-*": ["equusferus:wildhorse-juvenile-female-{type}"],
+					"*-yearling-male-*": ["equusferus:wildhorse-juvenile-male-{type}"],
+					"*-juvenile-female-*": ["equusferus:wildhorse-adult-female-{type}"],
+					"*-juvenile-male-*": ["equusferus:wildhorse-adult-male-{type}"]
+				}
+			},
+			{ "code": "deaddecay"},
+			{ "code": "floatupwhenstuck","onlyWhenDead": true},
+			{ "code": "harvestable"	},
+			{ "code": "health"},
+			{ "code": "pettable", "minGeneration": 0},
+			{ "code": "selectionboxes", "minGeneration": 0 },
+			{ "code": "attachable", "minGeneration": 0 },
+			{ "code": "jaunt:gait"},
+			{ "code": "jaunt:rideable" },
+			{ "code": "jaunt:stamina" },
+			{ "code": "genelib.info", "showtagonlywhentargeted": true },
+			{ "code": "entitystatetags" }
+		],
+		"spawnconditions": {
+			"worldgen": {
+				"tryOnlySurface": true,
+				"triesPerChunk": { "avg": 0.0001, "var": 0 },
+				"groupSizeByType": {
+					"*-adult-female-ferus": { "dist": "uniform", "avg": 7, "var": 3 },
+					"*-adult-male-ferus": { "dist": "uniform", "avg": 3.5, "var": 2.5 },
+					"*": { "dist": "uniform", "avg": 0, "var": 0 }
+				},
+				"insideBlockCodes": [ "game:air", "game:gravel-*",  "game:sand-*","game:snowlayer-1","game:soil-*","game:tallgrass-*" ],
+				"companionsByType": {
+				"*-adult-male-*":["equusferus:wildhorse-juvenile-male-{type}","equusferus:wildhorse-juvenile-male-{type}","equusferus:wildhorse-juvenile-male-{type}"],
+				"*-adult-female-*":["equusferus:wildhorse-adult-male-{type}","equusferus:wildhorse-adult-female-{type}","equusferus:wildhorse-adult-female-{type}","equusferus:wildhorse-adult-female-{type}", "equusferus:wildhorse-baby-female-{type}", "equusferus:wildhorse-baby-male-{type}" ]}
+			},
+			"runtime": {
+				"group": "neutral",
+				"tryOnlySurface": true,
+				"chanceByType": {
+					"*-adult-*": 0.0000001,
+					"*": 0.0
+				},
+				"maxQuantityByGroup": { "code": "wildhorse-*", "maxQuantity": 1 },
+				"mindistancetoplayer": 100,
+				"maxLightLevel": 7,
+				"lightLevelType": "onlyBlockLight",
+				"spawnCapPlayerScaling": 0.0,
+				"groupSizeByType": {
+					"*-adult-female-ferus": { "dist": "uniform", "avg": 7, "var": 3 },
+					"*-adult-male-ferus": { "dist": "uniform", "avg": 3.5, "var": 2.5 }
+				},
+				"insideBlockCodes": [ "game:air", "game:gravel-*",  "game:sand-*","game:snowlayer-1","game:soil-*","game:tallgrass-*" ],
+				"companionsByType": {
+				"*-adult-male-*":["equusferus:wildhorse-juvenile-male-{type}","equusferus:wildhorse-juvenile-male-{type}","equusferus:wildhorse-juvenile-male-{type}"],
+				"*-adult-female-*":["equusferus:wildhorse-adult-male-{type}","equusferus:wildhorse-adult-female-{type}","equusferus:wildhorse-adult-female-{type}","equusferus:wildhorse-adult-female-{type}", "equusferus:wildhorse-baby-female-{type}", "equusferus:wildhorse-baby-male-{type}"]}
+			}
+		},
+		"spawnconditionsByType": {
+			"wildhorse-adult-*-ferus": {
+				"climate": {
+					"minTemp": -5,
+					"maxTemp": 30,
+					"minRain": 0.2,
+					"maxRain": 0.8,
+					"minForest": 0.0,
+					"maxForest": 0.5,
+					"maxShrubs": 0.9
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+[
+    {
+    "code": "mainbaguncolor3",
+    "ingredientPattern": "TK",
+    "ingredients": {
+      "T": {
+        "type": "item",
+        "code": "saddle-*",
+        "name": "color"
+      },
+      "K": {
+        "type": "item",
+        "code": "game:knife-generic*",
+        "IsTool": true
+      }
+    },
+    "width": 1,
+    "height": 2,
+    "recipeGroup": 2,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "saddle-plain"
+    }
+  }
+]

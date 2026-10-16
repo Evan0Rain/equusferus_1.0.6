@@ -1,0 +1,116 @@
+[
+    {
+    "ingredientPattern": "L_L,LKL,LNL",
+    "ingredients": {
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-*",
+        "name": "leather",
+        "quantity": 5
+      },
+      "K": {
+        "type": "item",
+        "code": "game:plank-*",
+        "quantity": 1
+      },
+      "N": {
+        "type": "item",
+        "code": "game:metalnailsandstrips-*",
+        "quantity": 4
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+      "type": "item",
+      "code": "saddle-{leather}",
+      "quantity": 1
+    }
+  },
+    {
+    "ingredientPattern": "LNL,L_L",
+    "ingredients": {
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-*",
+        "name": "leather",
+        "quantity": 2
+      },
+      "N": {
+        "type": "item",
+        "code": "game:metalnailsandstrips-*",
+        "quantity": 1
+      }
+    },
+    "width": 3,
+    "height": 2,
+    "output": {
+      "type": "item",
+      "code": "bridle-hold",
+      "quantity": 1
+    }
+  },
+    {
+    "ingredientPattern": "L_L,LNL",
+    "ingredients": {
+      "L": {
+        "type": "item",
+        "code": "game:leather-normal-*",
+        "name": "leather",
+        "quantity": 2
+      },
+      "N": {
+        "type": "item",
+        "code": "game:metalnailsandstrips-*",
+        "quantity": 1
+      }
+    },
+    "width": 3,
+    "height": 2,
+    "output": {
+      "type": "item",
+      "code": "bridle-press",
+      "quantity": 1
+    }
+  },
+    {
+    "ingredientPattern": "B",
+    "ingredients": {
+      "B": {
+        "type": "item",
+        "code": "bridle-hold",
+        "name": "style"
+      }
+    },
+    "name": "bridlecontrolconv1",
+    "width": 1,
+    "height": 1,
+    "RecipeGroup": 2,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "bridle-press",
+      "quantity": 1
+    }
+  },
+  {
+    "ingredientPattern": "B",
+    "ingredients": {
+      "B": {
+        "type": "item",
+        "code": "bridle-press",
+        "name": "style"
+      }
+    },
+    "name": "bridlecontrolconv2",
+    "width": 1,
+    "height": 1,
+    "RecipeGroup": 3,
+    "shapeless": true,
+    "output": {
+      "type": "item",
+      "code": "bridle-hold",
+      "quantity": 1
+    }
+  }
+]

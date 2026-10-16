@@ -1,0 +1,7 @@
+﻿[
+  { "enabled": false, "op": "replace", "path": "/behaviorConfigs/jaunt:rideable/rideableGaitOrder/Sea", "value": ["tread", "swim"], "file": "equusferus:entities/ferus/ferus.json" }
+]
+
+
+
+

@@ -1,0 +1,35 @@
+[
+    {
+        "file": "game:blocktypes/metal/lantern.json",
+        "op": "addmerge",
+        "path": "/attributesByType/*-up/attachableToEntityByType/lantern-small-*/attachedShapeBySlotCode",
+        "value": {
+            "neck-newferus": {
+                "base": "item/wearable/hooved/lantern-small-elk"
+            }
+        },
+        "side": "server"
+    },
+    {
+        "enabled": true,
+        "op": "remove",
+        "path": "/attributesByType/bed-hay-*/attachableToEntity/attachedShape",
+        "file": "game:blocktypes/wood/bed.json",
+        "side": "Server",
+      "dependsOn": [ { "modid": "equusdestrier", "invert": true }, { "modid": "draconis", "invert": true }, { "modid": "cartwrightscaravan", "invert": true } ]
+    },
+    {
+        "file": "game:blocktypes/wood/bed.json",
+        "op": "addmerge",
+        "path": "/attributesByType/bed-hay-*/attachableToEntity/attachedShapeBySlotCode",
+        "value":{ "low*rback":{"base": "block/hay/strawbed-inventory"}},
+        "side": "server"
+    },
+    {
+        "file": "game:blocktypes/wood/bed.json",
+        "op": "addmerge",
+        "path": "/attributesByType/bed-hay-*/attachableToEntity/attachedShapeBySlotCode/lowerback-newferus",
+        "value":{"base": "equusferus:item/wearable/strawbed"},
+        "side": "server"
+    }
+]
